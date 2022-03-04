@@ -8,7 +8,7 @@ int main (){
     if (arr[i] < 128){
       sum += arr[i];
     }else{
-       arr[i] = (arr[i] * (-1)) + 255;
+       arr[i] = (arr[i] ^ 255);
        sum += arr[i];
     }
   }
