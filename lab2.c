@@ -5,10 +5,10 @@ int main (){
   int sum = 0;
   
   for (int i=0; i<10; i++){
-    if (arr[i] > 127){
+    if (arr[i] < 128){
       sum += arr[i];
     }else{
-       arr[i] = arr[i] * (-1);
+       arr[i] = (arr[i] * (-1)) + 255;
        sum += arr[i];
     }
   }
