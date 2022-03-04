@@ -12,23 +12,21 @@ movl $0, %ecx /*ecx - результат, сумма*/
 movl $array,%ebx /*ebx - адрес текущего элемента массива*/
 movl (%ebx), %eax /*eax - значение текущего элемента массива,
 потом XOR, AND*/
+movl $255, %edx
 jmp ch_bound
 loop_start:
 xor $128, %eax
 and $128, %eax
 cmpl $128, %eax /*срвнивает маску с результатом XOR, AND*/
 je less /*если они равны, значит элемент не подходит
-под условия, пропускаем его
-jne ok*/
-notl (%ebx)
-addl $256, (%ebx)
-/*ok:
+под условия, пропускаем его*/
+/*notl (%ebx)
+addl $256, (%ebx)*/
+xor %edx, (%ebx)
+add (%ebx), %ecx
+addl $4, %ebx
 movl (%ebx), %eax
-xor $255, %eax
-add (%eax), %ecx
-addl $4, %edx
-movl (%ebx), %eax
-jmp ch_bound*/
+jmp ch_bound
 less:
 add (%ebx), %ecx /*если не равны, значит складываем,
 результат в %ecx*/
